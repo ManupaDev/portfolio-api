@@ -1,4 +1,5 @@
 const projects = [];
+import Project from "./../models/Project.js";
 
 export const getAllProjects = (req, res) => {
   try {
@@ -24,18 +25,22 @@ export const getProject = (req, res) => {
   }
 };
 
-export const createProject = (req, res) => {
+export const createProject = async (req, res) => {
   try {
-    const project = req.body;
-    const found = projects.find((el) => el.id === parseInt(project.id));
-    if (found) {
-      return res.status(400).send();
-    }
-    projects.push(project);
-    return res.status(201).send();
+    const newProject = await Project.create(req.body); //? Promise resolves to a Object repr of the saved document.
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        course: newProject,
+      },
+    });
   } catch (error) {
     console.log(error);
-    res.status(500).send();
+    res.status(400).json({
+      status: "failed",
+      message: error,
+    });
   }
 };
 

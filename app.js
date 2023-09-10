@@ -14,7 +14,7 @@ app.use("/api/projects", projectRouter);
 const DB = process.env.MONGODB_URI;
 mongoose
   .connect(
-    "mongodb+srv://manupadev:j9zo9sLFqd2riP8o@cluster0.g6hornn.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://manupadev:ae7SeksVmwI2k54X@portfolio-api-db.xstzleu.mongodb.net/portfolio-api-db?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("DB connections successful");
